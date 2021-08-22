@@ -18,7 +18,7 @@ const Homepage = ({ data }) => {
       <Seo title="Home" />
       <HomepageBanner 
         title={RichText.asText(doc.banner_title.raw)}
-        description={RichText.asText(doc.banner_description)}
+        description={RichText.asText(doc.banner_description.raw)}
         linkUrl={doc.banner_link.url}
         linkLabel={RichText.asText(doc.banner_link_label.raw)}
         backgroundUrl={doc.banner_background.url}
