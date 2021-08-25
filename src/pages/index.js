@@ -6,12 +6,15 @@ import { RichText } from 'prismic-reactjs'
 import { Layout } from '../components/Layout'
 import { Seo } from '../components/Seo'
 import { HomepageBanner } from '../components/HomepageBanner'
-import { MainContent } from '../components/MainContent'
+// import { MainContent } from '../components/MainContent'
+//import { SliceZone } from '../components/SliceZone'
+
 
 const Homepage = ({ data }) => {
 
   if (!data) return null
   const doc = data.prismicHomepage.data
+  // console.log(doc.body)
 
   return (
     <Layout isHomepage>
@@ -23,7 +26,7 @@ const Homepage = ({ data }) => {
         linkLabel={RichText.asText(doc.banner_link_label.raw)}
         backgroundUrl={doc.banner_background.url}
       />
-      <MainContent />
+      
     </Layout>
   )  
 }
@@ -31,30 +34,43 @@ const Homepage = ({ data }) => {
 
 
 export const query = graphql`
-  query Homepage {
-    prismicHomepage {
-      data {
-        banner_title {
-          raw
-        }
-        banner_description {
-          raw
-        }
-        banner_link {
-          url
-          type
-          uid
-        }
-        banner_link_label {
-          raw
-        }
-        banner_background {
-          url
-        }
+query MyQuery {
+  prismicHomepage {
+    data {
+      banner_title {
+        raw
       }
+      banner_description {
+        raw
+      }
+      banner_link {
+        url
+        type
+        uid
+      }
+      banner_link_label {
+        raw
+      }
+      banner_background {
+        url
+      }
+
     }
   }
+}
 `
 
 
 export default Homepage
+
+
+      // body {
+      //   ... on PrismicSliceType {
+      //     slice_type
+      //   }
+      //   ...HomepageDataBodyText
+      //   ...HomepageDataBodyQuote
+      //   ...HomepageDataBodyFullWidthImage
+      //   ...HomepageDataBodyImageGallery
+      //   ...HomepageDataBodyImageHighlight
+      // }
